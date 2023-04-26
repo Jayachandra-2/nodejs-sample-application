@@ -12,6 +12,11 @@ pipeline {
               sh 'sudo yum install nodejs -y'
             }
         }
+         stage('nvm') {
+            steps {
+              sh 'sudo yum install nvm -y'
+            }
+        }
         stage('npm') {
             steps {
               sh 'sudo nvm start'
