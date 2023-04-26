@@ -4,19 +4,19 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-               sh 'git branch: 'main', url: 'git@github.com:Jayachandra-2/nodejs-sample-application.git''
+                git branch: 'main', url: 'git@github.com:Jayachandra-2/nodejs-sample-application.git'
             }
         }
-        stage('node') {
-            steps {
-              sh 'sudo yum install nodejs -y'
-            }
-        }
-        stage('npm') {
-            steps {
-              sh 'npm start'
-            }
-        }
+        // stage('node') {
+        //     steps {
+        //       sh 'sudo yum install nodejs -y'
+        //     }
+        // }
+        // stage('npm') {
+        //     steps {
+        //       sh 'npm start'
+        //     }
+        // }
         //  stage('nvm') {
         //     steps {
         //       sh '. ~/.nvm/nvm.sh'
