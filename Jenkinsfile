@@ -14,7 +14,7 @@ pipeline {
         }
         stage('npm') {
             steps {
-              sh 'npm start'
+              sh 'sudo npm start'
             }
         }
         //  stage('nvm') {
