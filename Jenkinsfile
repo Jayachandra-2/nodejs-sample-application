@@ -1,36 +1,36 @@
 pipeline {
-    agent any
+  agent any
 
-    stages {
-        stage('checkout') {
-            steps {
-                git branch: 'main', url: 'git@github.com:Jayachandra-2/nodejs-sample-application.git'
-            }
-        }
-        stage('node') {
-            steps {
-              sh 'sudo yum install nodejs -y'
-            }
-        }
-         stage('nvm') {
-            steps {
-              sh 'sudo yum install nvm -y'
-            }
-        }
-        stage('npm') {
-            steps {
-              sh 'sudo nvm start'
-            }
-        }
-        //  stage('nvm') {
-        //     steps {
-        //       sh '. ~/.nvm/nvm.sh'
-        //     }
-        // }
-        //  stage('nvm1') {
-        //     steps {
-        //       sh 'npm install'
-        //     }
-        // }
+  stages {
+    stage('Clone repository') {
+      steps {
+        git branch: 'main', url: 'git@github.com:Jayachandra-2/nodejs-sample-application.git'
+      }
     }
+
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
+    }
+
+    stage('Build application') {
+      steps {
+        sh 'npm run build'
+      }
+    }
+
+    stage('Deploy application') {
+      steps {
+        sh 'cp -R build/* /var/www/html'
+        sh 'sudo service httpd restart'
+      }
+    }
+  }
+
+  post {
+    always {
+      sh 'npm run test'
+    }
+  }
 }
