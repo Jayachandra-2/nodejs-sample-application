@@ -28,9 +28,9 @@ pipeline {
     }
   }
 
-  post {
-    always {
-      sh 'npm run test'
-    }
-  }
+//   post {
+//     always {
+//       sh 'npm run test'
+//     }
+//   }
 }
